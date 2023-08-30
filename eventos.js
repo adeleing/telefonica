@@ -3,6 +3,9 @@ const inputNumber = document.querySelector("#input-number");
 const formBtn = document.querySelector("#form-btn");
 const form = document.querySelector("#form");
 const list = document.querySelector("#list");
+const messageName = document.querySelector('.name')
+const messageNumber = document.querySelector('.number')
+
 
 const NUMBER_REGEX = /^((412)|(414)|(424)|(212))[0-9]{7}$/;
 const NAME_REGEX = /^[A-B]|\S$/;
@@ -20,15 +23,18 @@ const validate = (input, vericaficion) => {
 	}
 	if (!input.value) {
 		input.classList.remove("error");
+		// messageName.style.display = 'none';
 		input.classList.remove("success");
 		message.classList.remove("show");
-		
+	
 	} else if (vericaficion) {
 		input.classList.remove("error");
+		// messageName.style.display = 'none';
 		input.classList.add("success");
 		message.classList.remove("show");
 	} else {
 		input.classList.add("error");
+		// messageName.style.display = 'flex';
 		message.classList.add("show");
 		input.classList.remove("success");
 	}
@@ -42,6 +48,7 @@ inputName.addEventListener("input", (e) => {
 inputNumber.addEventListener("input", (e) => {
 	numberValidation = NUMBER_REGEX.test(inputNumber.value);
 	validate(inputNumber, numberValidation);
+	
 });
 
 form.addEventListener("submit", (e) => {
@@ -70,7 +77,7 @@ form.addEventListener("submit", (e) => {
 list.addEventListener("click", (e) => {
 	if (e.target.closest(".delete-icon")) {
 		e.target.closest(".delete-icon").parentElement.remove();
-		localStorage.removeItem("listcontacts");
+		localStorage.setItem("listcontacts", list.innerHTML);
 	}
 
 
@@ -80,13 +87,14 @@ list.addEventListener("click", (e) => {
 		console.log(inputEditName);
 		if (inputEditName.hasAttribute("disabled")) {
 			inputEditName.removeAttribute("disabled");
-			inputEditName, inputEditNumber.focus();
+			// inputEditName.focus();
 		} else {
 			inputEditName.setAttribute("disabled", true);
 			inputEditName.setAttribute("value", inputEditName.value);
 			console.log(inputEditName.value);
 		}
 	}
+	
 });
 
 
