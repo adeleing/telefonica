@@ -23,18 +23,15 @@ const validate = (input, vericaficion) => {
 	}
 	if (!input.value) {
 		input.classList.remove("error");
-		// messageName.style.display = 'none';
 		input.classList.remove("success");
 		message.classList.remove("show");
 	
 	} else if (vericaficion) {
 		input.classList.remove("error");
-		// messageName.style.display = 'none';
 		input.classList.add("success");
 		message.classList.remove("show");
 	} else {
 		input.classList.add("error");
-		// messageName.style.display = 'flex';
 		message.classList.add("show");
 		input.classList.remove("success");
 	}
@@ -87,7 +84,7 @@ list.addEventListener("click", (e) => {
 		console.log(inputEditName);
 		if (inputEditName.hasAttribute("disabled")) {
 			inputEditName.removeAttribute("disabled");
-			// inputEditName.focus();
+			inputEditName.focus();
 		} else {
 			inputEditName.setAttribute("disabled", true);
 			inputEditName.setAttribute("value", inputEditName.value);
